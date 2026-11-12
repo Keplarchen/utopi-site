@@ -2,8 +2,8 @@ import { BookOpen, Eye, FileText, Github, Move3D, type LucideIcon } from "lucide
 
 const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 
-export const paperHref = "https://openreview.net/forum?id=ICcMtlCHJL";
-export const pdfHref = "https://openreview.net/pdf?id=ICcMtlCHJL";
+export const paperHref = "https://arxiv.org/abs/2611.11562";
+export const pdfHref = "https://arxiv.org/pdf/2611.11562";
 export const codeHref = "https://github.com/SAI-Lab-NYU/utopi-code";
 
 export const venue = "NeurIPS 2026";
@@ -143,5 +143,5 @@ export const citation = `@inproceedings{wang2026utopi,
   author    = {Ziqi Wang and Su Chen and Qiance Tang and Jieyu Lin and Ziyun Li and Barbara De Salvo and Sai Qian Zhang},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   year      = {2026},
-  url       = {https://openreview.net/forum?id=ICcMtlCHJL}
+  url       = {https://arxiv.org/abs/2611.11562}
 }`;
