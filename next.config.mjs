@@ -7,12 +7,19 @@ const isUserOrOrgPages = repoName.toLowerCase() === `${owner.toLowerCase()}.gith
 const githubPagesBasePath =
   isGitHubActions && repoName && !isUserOrOrgPages ? `/${repoName}` : "";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? githubPagesBasePath;
+
 const nextConfig = {
   output: "export",
   devIndicators: false,
   reactStrictMode: true,
   trailingSlash: true,
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? githubPagesBasePath,
+  basePath,
+  // Expose the resolved basePath to the client bundle so static asset URLs
+  // (paper figures, demo clips in src/lib/content.ts) get the same prefix.
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath
+  },
   images: {
     unoptimized: true
   }
