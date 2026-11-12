@@ -10,7 +10,7 @@ export function DemoSection() {
         <SectionHeader
           eyebrow="04 / Demo"
           title="What the model actually sees"
-          description="Re-projection makes the temporal redundancy visible: for each frame we warp the previous frame into the current viewpoint using the recorded head motion and depth. Regions that land on the same content are dropped; regions that appear for the first time, and regions the user fixated on, are kept."
+          description="The clips show UTOPI running on EgoEye questions at a 15% token budget: tokens kept for the language model stay at full brightness, tokens dropped by the gaze-guided selector are dimmed, and foreground tokens removed by the overlap check are marked in red. Below, the re-projection figures show where that overlap comes from: the previous frame is warped into the current viewpoint using the recorded head motion and depth."
         />
 
         {demoClips.length > 0 ? <DemoCarousel clips={demoClips} /> : null}

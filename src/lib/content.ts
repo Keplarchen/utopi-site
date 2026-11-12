@@ -100,9 +100,48 @@ export const methodModules: { tag: string; title: string; icon: LucideIcon; body
 
 export type DemoClip = { title: string; caption: string; src: string; poster?: string };
 
-// Demo videos are served from GitHub Release assets so they do not bloat the repository.
-// Leave empty to hide the video carousel and show the static re-projection figures only.
-export const demoClips: DemoClip[] = [];
+// Demo clips live in public/demo (about 1 MB each). Rendered with tools/render_demo_clip.py from the
+// token-selection export of `scripts/eval_egoeye.py --drop_vis_dir` in the code repo (EgoEye questions,
+// AEA videos, 15% budget). Leave the list empty to hide the carousel.
+const demoClip = (slug: string, title: string, caption: string): DemoClip => ({
+  title,
+  caption,
+  src: assetPath(`/demo/${slug}.mp4`),
+  poster: assetPath(`/demo/${slug}.jpg`)
+});
+
+export const demoClips: DemoClip[] = [
+  demoClip(
+    "clip-headboard",
+    "Object attribute: bedroom",
+    "Question: What is the color of my bed's headboard? UTOPI keeps 15% of the visual tokens, concentrated around the gaze path, and answers 'Dark blue' (correct)."
+  ),
+  demoClip(
+    "clip-tiki-count",
+    "Counting: fireplace mantel",
+    "Question: How many wooden tiki sculptures were on the fireplace mantel? The kept tokens follow the fixations on the mantel; the model answers 'Four' (correct)."
+  ),
+  demoClip(
+    "clip-sour-cream",
+    "Episodic recall: kitchen",
+    "Question: What specific brand and type of sour cream did I put in the fridge after my last grocery run? Answer: the 'Daisy' brand, 'Light' version (correct)."
+  ),
+  demoClip(
+    "clip-paintings",
+    "Scene detail: dining room",
+    "Question: Which of the three paintings on the wall shows a beach with trees? Red regions are foreground tokens dropped by IVOC because the previous frame already covered them. Answer: the middle painting (correct)."
+  ),
+  demoClip(
+    "clip-shirt-color",
+    "Self-appearance: kitchen and pool",
+    "Question: What color shirt was I wearing right after I stood up from the sofa? Answer: a blue short-sleeved polo shirt (correct)."
+  ),
+  demoClip(
+    "clip-wristband",
+    "Self-appearance: hallway",
+    "Question: Which wrist did I have my wristband on earlier? Answer: the left wrist (correct)."
+  )
+];
 
 export const mainResults = {
   columns: ["EgoEye", "EgoSchema", "EgoGazeVQA"],
